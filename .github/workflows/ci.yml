@@ -5,6 +5,71 @@ on:
   - push
 
 jobs:
+  test:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:14-alpine
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: rails_test
+          POSTGRES_USER: rails
+          POSTGRES_PASSWORD: password
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: postgres://rails:password@localhost:5432/rails_test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install fonts-noto-cjk
+        run: |
+          sudo apt-get update
+          sudo apt-get install fonts-noto-cjk
+
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: yarn
+
+      - name: Install packages
+        run: yarn install --frozen-lockfile
+
+      - name: Build assets
+        run: |
+          yarn build
+          yarn build:css
+
+      - name: Set up database schema
+        run: bin/rails db:schema:load
+
+      - name: Run RSpec
+        run: bundle exec rspec
+
+      - name: Archive screenshots
+        uses: actions/upload-artifact@v3
+        with:
+          name: screenshots
+          path: tmp/capybara
+        if: failure()
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: coverage
+        if: always()
+
+      - uses: k1LoW/octocov-action@v0
+
   lint:
     runs-on: ubuntu-20.04
     timeout-minutes: 10

@@ -19,6 +19,9 @@ gem 'haml-rails'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -29,4 +32,12 @@ group :development do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+end
+
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
+
+  gem 'simplecov', require: false
 end
