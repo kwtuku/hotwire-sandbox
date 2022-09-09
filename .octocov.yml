@@ -1,0 +1,7 @@
+comment:
+diff:
+  datastores:
+    - artifact://${GITHUB_REPOSITORY}
+report:
+  datastores:
+    - artifact://${GITHUB_REPOSITORY}
