@@ -35,6 +35,7 @@ module HotwireSandbox
     config.generators.system_tests = nil
 
     config.generators do |g|
+      g.helper false
       g.test_framework :rspec,
         helper_specs: false,
         request_specs: false,
