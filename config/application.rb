@@ -42,5 +42,8 @@ module HotwireSandbox
         routing_specs: false,
         view_specs: false
     end
+
+    config.i18n.default_locale = :ja
+    config.time_zone = 'Asia/Tokyo'
   end
 end
