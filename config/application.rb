@@ -35,11 +35,15 @@ module HotwireSandbox
     config.generators.system_tests = nil
 
     config.generators do |g|
+      g.helper false
       g.test_framework :rspec,
         helper_specs: false,
         request_specs: false,
         routing_specs: false,
         view_specs: false
     end
+
+    config.i18n.default_locale = :ja
+    config.time_zone = 'Asia/Tokyo'
   end
 end
