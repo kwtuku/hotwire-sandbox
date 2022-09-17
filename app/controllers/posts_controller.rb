@@ -16,7 +16,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to post_path(@post), notice: 'Post was successfully created.'
+      redirect_to post_path(@post), notice: t('general.created', resource_name: Post.model_name.human)
     else
       render :new, status: :unprocessable_entity
     end
@@ -24,7 +24,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to post_path(@post), notice: 'Post was successfully updated.'
+      redirect_to post_path(@post), notice: t('general.updated', resource_name: Post.model_name.human)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy!
-    redirect_to posts_path, notice: 'Post was successfully destroyed.'
+    redirect_to posts_path, notice: t('general.destroyed', resource_name: Post.model_name.human)
   end
 
   private

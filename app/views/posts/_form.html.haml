@@ -1,7 +1,7 @@
 = form_for post do |f|
   - if post.errors.any?
     #error-explanation
-      %h2 #{pluralize(post.errors.count, 'error')} prohibited this post from being saved:
+      %h2= t('general.some_fields_have_problems')
       %ul
         - post.errors.full_messages.each do |message|
           %li= message
@@ -10,4 +10,4 @@
     = f.label :content
     = f.text_field :content
   .actions
-    = f.submit 'Save'
+    = f.submit

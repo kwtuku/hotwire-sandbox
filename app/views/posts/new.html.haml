@@ -1,5 +1,5 @@
-%h1 New post
+%h1= t('general.new_resource', resource_name: Post.model_name.human)
 
 = render 'form', post: @post
 
-= link_to 'Back', posts_path
+= link_to t('general.back'), posts_path

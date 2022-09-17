@@ -1,11 +1,16 @@
 ja:
   activerecord:
+    attributes:
+      post:
+        content: 内容
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
           has_one: '%{record}が存在しているので削除できません'
           has_many: '%{record}が存在しているので削除できません'
+    models:
+      post: 投稿
   date:
     abbr_day_names:
       - 日
@@ -204,3 +209,17 @@ ja:
       long: '%Y/%m/%d %H:%M'
       short: '%m/%d %H:%M'
     pm: 午後
+  general:
+    are_you_sure: 本当によろしいですか？
+    back: 戻る
+    created: '%{resource_name}を作成しました'
+    edit: 編集
+    editing_resource: '%{resource_name}を編集'
+    destroy: 削除
+    destroyed: '%{resource_name}を削除しました'
+    new_resource: '%{resource_name}を作成'
+    show: 詳細
+    some_fields_have_problems: 正しく入力されていない項目があります
+    updated: '%{resource_name}を更新しました'
+  posts:
+    latest_posts: 最新の投稿

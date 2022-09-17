@@ -1,7 +1,7 @@
-%h1 Editing post
+%h1= t('general.editing_resource', resource_name: Post.model_name.human)
 
 = render 'form', post: @post
 
-= link_to 'Show', post_path(@post)
+= link_to t('general.show'), post_path(@post)
 \|
-= link_to 'Back', posts_path
+= link_to t('general.back'), posts_path

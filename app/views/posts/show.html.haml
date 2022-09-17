@@ -1,7 +1,7 @@
 %p
-  %b Content:
+  %b #{Post.human_attribute_name(:content)}:
   = @post.content
 
-= link_to 'Edit', edit_post_path(@post)
+= link_to t('general.edit'), edit_post_path(@post)
 \|
-= link_to 'Back', posts_path
+= link_to t('general.back'), posts_path
