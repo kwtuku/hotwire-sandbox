@@ -19,7 +19,7 @@ RSpec.describe '投稿', type: :system do
 
     it '詳細が表示される' do
       visit root_path
-      click_link 'Show'
+      click_link '詳細'
       expect(page).to have_content 'ボンジュール'
       expect(page).to have_current_path post_path(post)
     end
@@ -28,12 +28,12 @@ RSpec.describe '投稿', type: :system do
   describe '作成' do
     it '作成できる' do
       visit root_path
-      click_link 'New Post'
-      expect(page).to have_content 'New post'
+      click_link '投稿を作成'
+      expect(page).to have_content '投稿を作成'
       expect(page).to have_current_path new_post_path
-      fill_in 'Content', with: 'ニーハオ'
-      click_button 'Save'
-      expect(page).to have_content 'Post was successfully created.'
+      fill_in '内容', with: 'ニーハオ'
+      click_button '登録する'
+      expect(page).to have_content '投稿を作成しました'
       expect(page).to have_current_path post_path(Post.last)
       expect(page).to have_content 'ニーハオ'
     end
@@ -45,12 +45,12 @@ RSpec.describe '投稿', type: :system do
     it '更新できる' do
       visit root_path
       expect(page).to have_content 'ジャンボ'
-      click_link 'Edit'
-      expect(page).to have_content 'Editing post'
+      click_link '編集'
+      expect(page).to have_content '投稿を編集'
       expect(page).to have_current_path edit_post_path(post)
-      fill_in 'Content', with: 'アンニョンハセヨ'
-      click_button 'Save'
-      expect(page).to have_content 'Post was successfully updated.'
+      fill_in '内容', with: 'アンニョンハセヨ'
+      click_button '更新する'
+      expect(page).to have_content '投稿を更新しました'
       expect(page).to have_current_path post_path(post)
       expect(page).not_to have_content 'ジャンボ'
       expect(page).to have_content 'アンニョンハセヨ'
@@ -65,8 +65,8 @@ RSpec.describe '投稿', type: :system do
     it '削除できる' do
       visit root_path
       expect(page).to have_content 'ナマステ'
-      accept_confirm { click_button 'Destroy' }
-      expect(page).to have_content 'Post was successfully destroyed.'
+      accept_confirm { click_button '削除' }
+      expect(page).to have_content '投稿を削除しました'
       expect(page).to have_current_path posts_path
       expect(page).not_to have_content 'ナマステ'
     end
