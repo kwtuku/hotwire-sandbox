@@ -26,34 +26,66 @@ RSpec.describe '投稿', type: :system do
   end
 
   describe '作成' do
-    it '作成できる' do
-      visit root_path
-      click_link '投稿を作成'
-      expect(page).to have_content '投稿を作成'
-      expect(page).to have_current_path new_post_path
-      fill_in '内容', with: 'ニーハオ'
-      click_button '登録する'
-      expect(page).to have_content '投稿を作成しました'
-      expect(page).to have_current_path post_path(Post.last)
-      expect(page).to have_content 'ニーハオ'
+    context '入力内容が正しいとき' do
+      it '作成できる' do
+        visit root_path
+        click_link '投稿を作成'
+        expect(page).to have_content '投稿を作成'
+        expect(page).to have_current_path new_post_path
+        fill_in '内容', with: 'ニーハオ'
+        click_button '登録する'
+        expect(page).to have_content '投稿を作成しました'
+        expect(page).to have_current_path post_path(Post.last)
+        expect(page).to have_content 'ニーハオ'
+      end
+    end
+
+    context '入力内容が正しくないとき' do
+      it '作成できない' do
+        visit root_path
+        click_link '投稿を作成'
+        expect(page).to have_content '投稿を作成'
+        expect(page).to have_current_path new_post_path
+        click_button '登録する'
+        expect(page).to have_content '正しく入力されていない項目があります'
+        expect(page).to have_current_path new_post_path
+        expect(page).to have_content '内容を入力してください'
+      end
     end
   end
 
   describe '更新' do
     let!(:post) { create(:post, content: 'ジャンボ') }
 
-    it '更新できる' do
-      visit root_path
-      expect(page).to have_content 'ジャンボ'
-      click_link '編集'
-      expect(page).to have_content '投稿を編集'
-      expect(page).to have_current_path edit_post_path(post)
-      fill_in '内容', with: 'アンニョンハセヨ'
-      click_button '更新する'
-      expect(page).to have_content '投稿を更新しました'
-      expect(page).to have_current_path post_path(post)
-      expect(page).not_to have_content 'ジャンボ'
-      expect(page).to have_content 'アンニョンハセヨ'
+    context '入力内容が正しいとき' do
+      it '更新できる' do
+        visit root_path
+        expect(page).to have_content 'ジャンボ'
+        click_link '編集'
+        expect(page).to have_content '投稿を編集'
+        expect(page).to have_current_path edit_post_path(post)
+        fill_in '内容', with: 'アンニョンハセヨ'
+        click_button '更新する'
+        expect(page).to have_content '投稿を更新しました'
+        expect(page).to have_current_path post_path(post)
+        expect(page).not_to have_content 'ジャンボ'
+        expect(page).to have_content 'アンニョンハセヨ'
+      end
+    end
+
+    context '入力内容が正しくないとき' do
+      it '更新できない' do
+        visit root_path
+        expect(page).to have_content 'ジャンボ'
+        click_link '編集'
+        expect(page).to have_content '投稿を編集'
+        expect(page).to have_current_path edit_post_path(post)
+        fill_in '内容', with: ''
+        click_button '更新する'
+        expect(page).to have_content '正しく入力されていない項目があります'
+        expect(page).to have_current_path edit_post_path(post)
+        expect(page).to have_content '内容を入力してください'
+      end
     end
   end
 
