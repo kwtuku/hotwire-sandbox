@@ -222,4 +222,5 @@ ja:
     some_fields_have_problems: 正しく入力されていない項目があります
     updated: '%{resource_name}を更新しました'
   posts:
+    edited: 編集済み
     latest_posts: 最新の投稿
