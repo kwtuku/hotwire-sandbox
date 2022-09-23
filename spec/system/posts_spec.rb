@@ -19,7 +19,7 @@ RSpec.describe '投稿', type: :system do
 
     it '詳細が表示される' do
       visit root_path
-      click_link '詳細'
+      find("[data-testid='post-link-#{post.id}']").click
       expect(page).to have_content 'ボンジュール'
       expect(page).to have_current_path post_path(post)
     end
@@ -61,6 +61,7 @@ RSpec.describe '投稿', type: :system do
       it '更新できる' do
         visit root_path
         expect(page).to have_content 'ジャンボ'
+        find("[data-testid='post-dropdown-#{post.id}']").click
         click_link '編集'
         expect(page).to have_content '投稿を編集'
         expect(page).to have_current_path edit_post_path(post)
@@ -77,6 +78,7 @@ RSpec.describe '投稿', type: :system do
       it '更新できない' do
         visit root_path
         expect(page).to have_content 'ジャンボ'
+        find("[data-testid='post-dropdown-#{post.id}']").click
         click_link '編集'
         expect(page).to have_content '投稿を編集'
         expect(page).to have_current_path edit_post_path(post)
@@ -90,13 +92,12 @@ RSpec.describe '投稿', type: :system do
   end
 
   describe '削除' do
-    before do
-      create(:post, content: 'ナマステ')
-    end
+    let!(:post) { create(:post, content: 'ナマステ') }
 
     it '削除できる' do
       visit root_path
       expect(page).to have_content 'ナマステ'
+      find("[data-testid='post-dropdown-#{post.id}']").click
       accept_confirm { click_button '削除' }
       expect(page).to have_content '投稿を削除しました'
       expect(page).to have_current_path posts_path
