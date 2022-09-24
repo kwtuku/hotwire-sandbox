@@ -6,8 +6,6 @@
         - post.errors.full_messages.each do |message|
           %li= message
 
-  .field
-    = f.label :content
-    = f.text_field :content
-  .actions
-    = f.submit
+  .mb-3
+    = f.text_field :content, class: 'form-control', placeholder: t('posts.what_is_happening')
+  = f.submit class: 'btn btn-primary'

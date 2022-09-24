@@ -1,7 +1,6 @@
-%h1= t('general.editing_resource', resource_name: Post.model_name.human)
+.d-flex.align-items-center.mb-2
+  = link_to posts_path do
+    %i.bi.bi-arrow-left.fs-4
+  %h1.mb-0.ms-3= t('general.editing_resource', resource_name: Post.model_name.human)
 
 = render 'form', post: @post
-
-= link_to t('general.show'), post_path(@post)
-\|
-= link_to t('general.back'), posts_path

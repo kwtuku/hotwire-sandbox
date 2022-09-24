@@ -1,7 +1,20 @@
-%p
-  %b #{Post.human_attribute_name(:content)}:
-  = @post.content
+.d-flex.align-items-center.mb-2
+  = link_to posts_path do
+    %i.bi.bi-arrow-left.fs-4
+  %h1.mb-0.ms-3= t('posts.post')
 
-= link_to t('general.edit'), edit_post_path(@post)
-\|
-= link_to t('general.back'), posts_path
+%article
+  .d-flex.justify-content-between
+    .text-muted
+      %span= @post.created_at
+      - if @post.created_at != @post.updated_at
+        %span ･
+        %span= t('posts.edited')
+    .dropdown
+      %button.btn.btn-link.px-1.py-0{ data: { bs_toggle: 'dropdown' } }
+        %i.bi.bi-three-dots
+      %ul.dropdown-menu.dropdown-menu-end
+        %li= link_to t('general.edit'), edit_post_path(@post), class: 'dropdown-item'
+        %li= button_to t('general.destroy'), post_path(@post), method: :delete, class: 'dropdown-item text-danger',
+          form: { data: { turbo_confirm: t('general.are_you_sure') } }
+  %span= @post.content
