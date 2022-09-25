@@ -32,7 +32,7 @@ RSpec.describe '投稿', type: :system do
         click_link '投稿を作成'
         expect(page).to have_content '投稿を作成'
         expect(page).to have_current_path new_post_path
-        fill_in '内容', with: 'ニーハオ'
+        fill_in 'post[content]', with: 'ニーハオ'
         click_button '登録する'
         expect(page).to have_content '投稿を作成しました'
         expect(page).to have_current_path post_path(Post.last)
@@ -65,7 +65,7 @@ RSpec.describe '投稿', type: :system do
         click_link '編集'
         expect(page).to have_content '投稿を編集'
         expect(page).to have_current_path edit_post_path(post)
-        fill_in '内容', with: 'アンニョンハセヨ'
+        fill_in 'post[content]', with: 'アンニョンハセヨ'
         click_button '更新する'
         expect(page).to have_content '投稿を更新しました'
         expect(page).to have_current_path post_path(post)
@@ -82,7 +82,7 @@ RSpec.describe '投稿', type: :system do
         click_link '編集'
         expect(page).to have_content '投稿を編集'
         expect(page).to have_current_path edit_post_path(post)
-        fill_in '内容', with: ''
+        fill_in 'post[content]', with: ''
         click_button '更新する'
         expect(page).to have_content '正しく入力されていない項目があります'
         expect(page).to have_current_path edit_post_path(post)
