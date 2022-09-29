@@ -3,4 +3,5 @@
     %i.bi.bi-arrow-left.fs-4
   %h1.mb-0.ms-3= t('general.new_resource', resource_name: Post.model_name.human)
 
-= render 'form', post: @post
+= turbo_frame_tag dom_id(@post), source: new_post_path do
+  = render 'form', post: @post

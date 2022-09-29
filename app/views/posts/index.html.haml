@@ -1,5 +1,5 @@
 %h1= t('posts.latest_posts')
 
-= link_to t('general.new_resource', resource_name: Post.model_name.human), new_post_path
+= turbo_frame_tag dom_id(Post.new), src: new_post_path
 
 = render partial: 'post', collection: @posts

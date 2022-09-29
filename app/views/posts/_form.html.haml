@@ -1,4 +1,4 @@
-= form_for post do |f|
+= form_with(model: post) do |f|
   - if post.errors.any?
     #error-explanation
       %h2= t('general.some_fields_have_problems')
