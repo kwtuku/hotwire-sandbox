@@ -2,4 +2,5 @@
 
 = turbo_frame_tag dom_id(Post.new), src: new_post_path
 
-= render partial: 'post', collection: @posts
+#posts-container
+  = render partial: 'post', collection: @posts

@@ -11,6 +11,5 @@
   %body
     .container
       %main.w-50.mx-auto
-        - flash.each do |_key, message|
-          %div= message
+        #flash-container= render 'layouts/flash'
         = yield
