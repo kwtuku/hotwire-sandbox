@@ -32,7 +32,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy!
-    redirect_to posts_path, notice: t('general.destroyed', resource_name: Post.model_name.human)
+    flash.now.notice = t('general.destroyed', resource_name: Post.model_name.human)
   end
 
   private
