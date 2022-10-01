@@ -8,4 +8,5 @@
 
   .mb-3
     = f.text_field :content, class: 'form-control', placeholder: t('posts.what_is_happening')
+  = link_to 'キャンセル', posts_path, class: 'btn btn-light' if post.persisted?
   = f.submit class: 'btn btn-primary'

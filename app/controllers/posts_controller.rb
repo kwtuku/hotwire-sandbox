@@ -24,7 +24,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to post_path(@post), notice: t('general.updated', resource_name: Post.model_name.human)
+      flash.now.notice = t('general.updated', resource_name: Post.model_name.human)
     else
       render :edit, status: :unprocessable_entity
     end
