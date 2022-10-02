@@ -104,7 +104,7 @@ RSpec.describe '投稿', type: :system do
       find("[data-testid='post-dropdown-#{post.id}']").click
       accept_confirm { click_button '削除' }
       expect(page).to have_content '投稿を削除しました'
-      expect(page).to have_current_path posts_path
+      expect(page).to have_current_path root_path
       expect(page).not_to have_content 'ナマステ'
     end
   end
