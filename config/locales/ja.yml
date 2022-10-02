@@ -211,14 +211,13 @@ ja:
     pm: 午後
   general:
     are_you_sure: 本当によろしいですか？
-    back: 戻る
+    cancel: キャンセル
     created: '%{resource_name}を作成しました'
     edit: 編集
     editing_resource: '%{resource_name}を編集'
     destroy: 削除
     destroyed: '%{resource_name}を削除しました'
     new_resource: '%{resource_name}を作成'
-    show: 詳細
     some_fields_have_problems: 正しく入力されていない項目があります
     updated: '%{resource_name}を更新しました'
   posts:
