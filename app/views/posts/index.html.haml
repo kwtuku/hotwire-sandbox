@@ -1,22 +1,6 @@
 %h1= t('posts.latest_posts')
 
-= link_to t('general.new_resource', resource_name: Post.model_name.human), new_post_path
+= turbo_frame_tag dom_id(Post.new), src: new_post_path
 
-- @posts.each do |post|
-  %article.mt-3.position-relative
-    .d-flex.justify-content-between
-      .text-muted
-        %span= link_to post.created_at, post_path(post), class: 'stretched-link',
-          data: { testid: "post-link-#{post.id}" }
-        - if post.created_at != post.updated_at
-          %span ･
-          %span= t('posts.edited')
-      .dropdown
-        %button.btn.btn-link.px-1.py-0.z-2.position-relative{ data: { bs_toggle: 'dropdown',
-          testid: "post-dropdown-#{post.id}" } }
-          %i.bi.bi-three-dots
-        %ul.dropdown-menu.dropdown-menu-end
-          %li= link_to t('general.edit'), edit_post_path(post), class: 'dropdown-item'
-          %li= button_to t('general.destroy'), post_path(post), method: :delete, class: 'dropdown-item text-danger',
-            form: { data: { turbo_confirm: t('general.are_you_sure') } }
-    %span= post.content
+#posts-container
+  = render partial: 'post', collection: @posts

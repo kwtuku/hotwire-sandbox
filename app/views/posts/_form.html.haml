@@ -1,4 +1,4 @@
-= form_for post do |f|
+= form_with(model: post) do |f|
   - if post.errors.any?
     #error-explanation
       %h2= t('general.some_fields_have_problems')
@@ -8,4 +8,5 @@
 
   .mb-3
     = f.text_field :content, class: 'form-control', placeholder: t('posts.what_is_happening')
+  = link_to t('general.cancel'), posts_path, class: 'btn btn-light' if post.persisted?
   = f.submit class: 'btn btn-primary'

@@ -3,4 +3,5 @@
     %i.bi.bi-arrow-left.fs-4
   %h1.mb-0.ms-3= t('general.editing_resource', resource_name: Post.model_name.human)
 
-= render 'form', post: @post
+= turbo_frame_tag dom_id(@post, :content) do
+  .z-2.position-relative{ data: { testid: "post-edit-form-#{@post.id}" } }= render 'form', post: @post
