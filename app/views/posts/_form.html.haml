@@ -1,12 +1,4 @@
-= form_with(model: post) do |f|
-  - if post.errors.any?
-    #error-explanation
-      %h2= t('general.some_fields_have_problems')
-      %ul
-        - post.errors.full_messages.each do |message|
-          %li= message
-
-  .mb-2
-    = f.text_field :content, class: 'form-control', placeholder: t('posts.what_is_happening')
+= bootstrap_form_with(model: post) do |f|
+  = f.text_area :content, hide_label: true, placeholder: t('posts.what_is_happening'), wrapper: { class: 'mb-2' }
   = link_to t('general.cancel'), posts_path, class: 'btn btn-light' if post.persisted?
-  = f.submit class: 'btn btn-primary'
+  = f.primary

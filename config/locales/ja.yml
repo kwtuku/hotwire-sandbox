@@ -9,6 +9,11 @@ ja:
         restrict_dependent_destroy:
           has_one: '%{record}が存在しているので削除できません'
           has_many: '%{record}が存在しているので削除できません'
+      models:
+        post:
+          attributes:
+            content:
+              blank: 入力してください
     models:
       post: 投稿
   date:
@@ -218,7 +223,6 @@ ja:
     destroy: 削除
     destroyed: '%{resource_name}を削除しました'
     new_resource: '%{resource_name}を作成'
-    some_fields_have_problems: 正しく入力されていない項目があります
     updated: '%{resource_name}を更新しました'
   posts:
     edited: 編集済み
