@@ -9,7 +9,7 @@
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
     = javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true
   %body
-    .container
-      %main.w-50.mx-auto
+    .container.my-3
+      %main.mw-30rem.mx-auto
         #flash-container= render 'layouts/flash'
         = yield
