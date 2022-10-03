@@ -31,11 +31,11 @@ RSpec.describe '投稿', type: :system do
         visit root_path
         expect(page).to have_button '登録する'
         expect(page).to have_current_path root_path
-        fill_in 'post[content]', with: 'ニーハオ'
+        fill_in '内容', with: 'ニーハオ'
         click_button '登録する'
         expect(page).to have_content '投稿を作成しました'
         expect(page).to have_current_path root_path
-        expect(page).to have_field 'post[content]', with: ''
+        expect(page).to have_field '内容', with: ''
         expect(page).to have_content 'ニーハオ'
       end
     end
@@ -46,9 +46,8 @@ RSpec.describe '投稿', type: :system do
         expect(page).to have_button '登録する'
         expect(page).to have_current_path root_path
         click_button '登録する'
-        expect(page).to have_content '正しく入力されていない項目があります'
+        expect(page).to have_content '入力してください'
         expect(page).to have_current_path root_path
-        expect(page).to have_content '内容を入力してください'
       end
     end
   end
@@ -63,9 +62,9 @@ RSpec.describe '投稿', type: :system do
         find("[data-testid='post-dropdown-#{post.id}']").click
         click_link '編集'
         within "[data-testid='post-edit-form-#{post.id}']" do
-          expect(page).to have_field 'post[content]', with: 'ジャンボ'
+          expect(page).to have_field '内容', with: 'ジャンボ'
           expect(page).to have_current_path root_path
-          fill_in 'post[content]', with: 'アンニョンハセヨ'
+          fill_in '内容', with: 'アンニョンハセヨ'
         end
         click_button '更新する'
         expect(page).to have_content '投稿を更新しました'
@@ -83,14 +82,13 @@ RSpec.describe '投稿', type: :system do
         find("[data-testid='post-dropdown-#{post.id}']").click
         click_link '編集'
         within "[data-testid='post-edit-form-#{post.id}']" do
-          expect(page).to have_field 'post[content]', with: 'ジャンボ'
+          expect(page).to have_field '内容', with: 'ジャンボ'
           expect(page).to have_current_path root_path
-          fill_in 'post[content]', with: ''
+          fill_in '内容', with: ''
         end
         click_button '更新する'
-        expect(page).to have_content '正しく入力されていない項目があります'
+        expect(page).to have_content '入力してください'
         expect(page).to have_current_path root_path
-        expect(page).to have_content '内容を入力してください'
       end
     end
   end
