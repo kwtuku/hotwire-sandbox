@@ -1,8 +1,8 @@
 %article.mt-3.position-relative{ id: dom_id(post) }
   .d-flex.justify-content-between
     .text-muted
-      %span= link_to post.created_at, post_path(post), class: 'link-muted stretched-link',
-        data: { testid: "post-link-#{post.id}" }
+      = link_to post_path(post), class: 'link-muted stretched-link', data: { testid: "post-link-#{post.id}" } do
+        %relative-time{ datetime: post.created_at }
       - if post.created_at != post.updated_at
         %span ･
         %span= t('posts.edited')

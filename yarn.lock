@@ -22,6 +22,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@github/time-elements@^3.1.4":
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/@github/time-elements/-/time-elements-3.1.4.tgz#0ba8504de06280f81a25e4d718491b22fc6b483e"
+  integrity sha512-DTe/w0uKVeciKzGtYadNdfS8D86pXdGF+OrKg+vi8PKlotJ45zAc26zNpmmfCcMblBBg2+uoi3OxmUm7am/0sg==
+
 "@hotwired/stimulus@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@hotwired/stimulus/-/stimulus-3.1.0.tgz#20215251e5afe6e0a3787285181ba1bfc9097df0"

@@ -6,7 +6,7 @@
 %article
   .d-flex.justify-content-between
     .text-muted
-      %span= @post.created_at
+      %relative-time{ datetime: @post.created_at }
       - if @post.created_at != @post.updated_at
         %span ･
         %span= t('posts.edited')
