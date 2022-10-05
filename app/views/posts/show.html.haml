@@ -1,6 +1,4 @@
-.d-flex.align-items-center.mb-3
-  = link_to posts_path do
-    %i.bi.bi-arrow-left.fs-4
-  %h1.mb-0.ms-2= t('posts.post')
+= render 'header' do
+  %h1.mb-0= t('posts.post')
 
-= render 'post', post: @post
+.mt-n3= render 'post', post: @post

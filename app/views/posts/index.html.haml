@@ -1,7 +1,10 @@
-%h1.mb-3= t('posts.latest_posts')
+= render 'header' do
+  .flex-fill
+    = link_to posts_path, class: 'text-body text-decoration-none' do
+      %h1.mb-0= t('posts.latest_posts')
 
 = turbo_frame_tag dom_id(Post.new), src: new_post_path do
   .p-5= render 'shared/spinner'
 
-#posts-container
+.mb-3#posts-container
   = render partial: 'post', collection: @posts
