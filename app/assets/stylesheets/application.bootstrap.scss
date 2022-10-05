@@ -46,8 +46,9 @@ $utilities: map-merge(
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 
-.mw-30rem {
-  max-width: 30rem;
+.custom-container {
+  @include make-container();
+  max-width: 40rem;
 }
 
 .turbo-progress-bar {

@@ -9,7 +9,16 @@
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
     = javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true
   %body.text-break
-    .container
-      %main.mw-30rem.mx-auto
+    .custom-container.d-flex
+      %header.sticky-top.vh-100.p-3.d-flex.flex-column.align-items-center
+        = link_to root_path do
+          %i.bi.bi-lightning-fill.fs-2
+        %nav.nav.flex-column.mt-2
+          = link_to root_path, class: 'nav-link' do
+            %i.bi.bi-house.fs-4
+        .mt-auto
+          = link_to new_post_path, class: 'btn btn-primary rounded-pill' do
+            %i.bi.bi-plus.fs-4
+      %main.flex-fill
         .z-2.position-fixed.bottom-0.start-50.translate-middle-x#flash-container= render 'layouts/flash'
         = yield
