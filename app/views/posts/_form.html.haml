@@ -1,4 +1,4 @@
 = bootstrap_form_with(model: post) do |f|
   = f.text_area :content, hide_label: true, placeholder: t('posts.what_is_happening'), wrapper: { class: 'mb-2' }
-  = link_to t('general.cancel'), posts_path, class: 'btn btn-light' if post.persisted?
+  = link_to t('general.cancel'), post_path(post), class: 'btn btn-light' if post.persisted?
   = f.primary
