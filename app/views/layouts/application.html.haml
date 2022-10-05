@@ -19,6 +19,6 @@
         .mt-auto
           = link_to new_post_path, class: 'btn btn-primary rounded-pill' do
             %i.bi.bi-plus.fs-4
-      %main.flex-fill
+      %main.flex-fill.border-start.ps-3
         .z-2.position-fixed.bottom-0.start-50.translate-middle-x#flash-container= render 'layouts/flash'
         = yield
