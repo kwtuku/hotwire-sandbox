@@ -1,12 +1,12 @@
 %article.mt-3.pt-3.border-top.position-relative{ id: dom_id(post) }
-  .d-flex.justify-content-between
+  .d-flex.justify-content-between.align-items-center
     .text-muted
       = link_to_unless_current tag.relative_time(datetime: post.created_at), post_path(post),
         class: 'link-muted stretched-link', data: { testid: "post-link-#{post.id}" }
       - if post.created_at != post.updated_at
         %span ･
         %span= t('posts.edited')
-    .dropdown
+    .dropdown.p-1
       %button.btn.btn-link.px-1.py-0.z-2.position-relative{ data: { bs_toggle: 'dropdown',
         testid: "post-dropdown-#{post.id}" } }
         %i.bi.bi-three-dots
