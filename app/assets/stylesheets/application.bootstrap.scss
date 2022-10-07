@@ -1,5 +1,33 @@
+$enable-negative-margins: true;
+
+$link-decoration: none;
+$link-hover-decoration: underline;
+
 @import 'bootstrap/scss/functions';
 @import 'bootstrap/scss/variables';
+
+$h1-font-size: $font-size-base * 1.75;
+$h2-font-size: $font-size-base * 1.5;
+$h3-font-size: $font-size-base * 1.25;
+$h4-font-size: $font-size-base;
+$h5-font-size: $font-size-base;
+$h6-font-size: $font-size-base;
+
+.link-muted {
+  color: $text-muted;
+
+  @if $link-shade-percentage != 0 {
+    &:hover,
+    &:focus {
+      color: if(
+        color-contrast($text-muted) == $color-contrast-light,
+        shade-color($text-muted, $link-shade-percentage),
+        tint-color($text-muted, $link-shade-percentage)
+      );
+    }
+  }
+}
+
 @import 'bootstrap/scss/maps';
 @import 'bootstrap/scss/mixins';
 @import 'bootstrap/scss/utilities';
@@ -7,6 +35,11 @@
 $utilities: map-merge(
   $utilities,
   (
+    'resize': (
+      property: resize,
+      class: resize,
+      values: none,
+    ),
     'z-index': (
       property: z-index,
       class: z,
@@ -17,3 +50,12 @@ $utilities: map-merge(
 
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+.custom-container {
+  @include make-container();
+  max-width: 40rem;
+}
+
+.turbo-progress-bar {
+  background-color: $primary;
+}

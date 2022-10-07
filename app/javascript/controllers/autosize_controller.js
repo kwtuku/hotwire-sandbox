@@ -1,7 +1,8 @@
 import { Controller } from '@hotwired/stimulus';
+import autosize from 'autosize';
 
 export default class extends Controller {
   connect() {
-    this.element.textContent = 'Hello World!';
+    autosize(this.element);
   }
 }

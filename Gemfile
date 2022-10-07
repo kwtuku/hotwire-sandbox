@@ -15,6 +15,7 @@ gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
+gem 'bootstrap_form'
 gem 'haml-rails'
 
 group :development, :test do
