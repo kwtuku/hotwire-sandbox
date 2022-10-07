@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import AutosizeController from "./autosize_controller"
+application.register("autosize", AutosizeController)
+
 import ToastController from "./toast_controller"
 application.register("toast", ToastController)
