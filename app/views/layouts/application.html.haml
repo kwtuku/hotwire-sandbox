@@ -4,6 +4,7 @@
     %meta{ content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type' }
     %title HotwireSandbox
     %meta{ content: 'width=device-width,initial-scale=1', name: 'viewport' }
+    %meta{ content: 'no-preview', name: 'turbo-cache-control' }
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
@@ -11,10 +12,10 @@
   %body.text-break
     .custom-container.d-flex
       %header.sticky-top.vh-100.p-3.d-flex.flex-column.align-items-center
-        = link_to root_path do
+        = link_to posts_path do
           %i.bi.bi-lightning-fill.fs-2
         %nav.nav.flex-column.mt-2
-          = link_to root_path, class: 'nav-link' do
+          = link_to posts_path, class: 'nav-link' do
             %i.bi.bi-house.fs-4
         .mt-auto
           = link_to new_post_path, class: 'btn btn-primary rounded-pill' do

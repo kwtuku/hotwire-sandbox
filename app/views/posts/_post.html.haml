@@ -2,7 +2,7 @@
   .d-flex.justify-content-between.align-items-center
     .text-muted
       = link_to_unless_current tag.relative_time(datetime: post.created_at), post_path(post),
-        class: 'link-muted stretched-link', data: { testid: "post-link-#{post.id}" }
+        class: 'text-reset stretched-link', data: { testid: "post-link-#{post.id}" }
       - if post.created_at != post.updated_at
         %span ･
         %span= t('posts.edited')

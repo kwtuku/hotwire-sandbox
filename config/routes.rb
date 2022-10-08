@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  root 'posts#index'
+  root to: redirect('/posts')
   resources :posts
 end
