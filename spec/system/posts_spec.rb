@@ -30,11 +30,11 @@ RSpec.describe '投稿', type: :system do
       it '作成できる' do
         visit root_path
         expect(page).to have_button '登録する'
-        expect(page).to have_current_path root_path
+        expect(page).to have_current_path posts_path
         fill_in '内容', with: 'ニーハオ'
         click_button '登録する'
         expect(page).to have_content '投稿を作成しました'
-        expect(page).to have_current_path root_path
+        expect(page).to have_current_path posts_path
         expect(page).to have_field '内容', with: ''
         expect(page).to have_content 'ニーハオ'
       end
@@ -44,10 +44,10 @@ RSpec.describe '投稿', type: :system do
       it '作成できない' do
         visit root_path
         expect(page).to have_button '登録する'
-        expect(page).to have_current_path root_path
+        expect(page).to have_current_path posts_path
         click_button '登録する'
         expect(page).to have_content '入力してください'
-        expect(page).to have_current_path root_path
+        expect(page).to have_current_path posts_path
       end
     end
   end
@@ -63,12 +63,12 @@ RSpec.describe '投稿', type: :system do
         click_link '編集'
         within "[data-testid='post-edit-form-#{post.id}']" do
           expect(page).to have_field '内容', with: 'ジャンボ'
-          expect(page).to have_current_path root_path
+          expect(page).to have_current_path posts_path
           fill_in '内容', with: 'アンニョンハセヨ'
         end
         click_button '更新する'
         expect(page).to have_content '投稿を更新しました'
-        expect(page).to have_current_path root_path
+        expect(page).to have_current_path posts_path
         expect(page).not_to have_content 'ジャンボ'
         expect(page).to have_content 'アンニョンハセヨ'
         expect(page).to have_content '編集済み'
@@ -83,12 +83,12 @@ RSpec.describe '投稿', type: :system do
         click_link '編集'
         within "[data-testid='post-edit-form-#{post.id}']" do
           expect(page).to have_field '内容', with: 'ジャンボ'
-          expect(page).to have_current_path root_path
+          expect(page).to have_current_path posts_path
           fill_in '内容', with: ''
         end
         click_button '更新する'
         expect(page).to have_content '入力してください'
-        expect(page).to have_current_path root_path
+        expect(page).to have_current_path posts_path
       end
     end
   end
@@ -102,7 +102,7 @@ RSpec.describe '投稿', type: :system do
       find("[data-testid='post-dropdown-#{post.id}']").click
       accept_confirm { click_button '削除' }
       expect(page).to have_content '投稿を削除しました'
-      expect(page).to have_current_path root_path
+      expect(page).to have_current_path posts_path
       expect(page).not_to have_content 'ナマステ'
     end
   end
