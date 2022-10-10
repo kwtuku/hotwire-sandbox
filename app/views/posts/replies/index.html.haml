@@ -1,0 +1,6 @@
+= render 'posts/header' do
+  %h1.mb-0= t('posts.replies')
+
+= link_to t('posts.reply_to_post'), new_post_post_path
+
+.mb-3= render partial: 'posts/post', collection: @replies

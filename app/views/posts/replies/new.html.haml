@@ -1,0 +1,4 @@
+= render 'posts/header' do
+  %h1.mb-0= t('posts.reply_to_post')
+
+= render 'form', reply: @reply, post: @post
