@@ -3,4 +3,6 @@
 
 = link_to t('posts.reply_to_post'), new_post_post_path
 
-.mb-3= render partial: 'posts/post', collection: @replies
+.mb-3
+  = turbo_frame_tag 'replies-container' do
+    = render partial: 'posts/post', collection: @replies

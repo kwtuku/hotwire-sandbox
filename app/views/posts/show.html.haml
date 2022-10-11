@@ -1,4 +1,8 @@
 = render 'header' do
   %h1.mb-0= t('posts.post')
 
-.mt-n3= render 'post', post: @post
+.mt-n3= render 'post', post: @post, is_large_text: true
+
+.mb-3
+  = turbo_frame_tag 'replies-container', src: post_posts_path(@post), target: '_top' do
+    .p-5= render 'shared/spinner'

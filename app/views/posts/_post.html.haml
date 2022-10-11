@@ -16,9 +16,8 @@
         %li= button_to t('general.destroy'), post_path(post), method: :delete, class: 'dropdown-item text-danger',
           form: { data: { turbo_confirm: t('general.are_you_sure') } }
   = turbo_frame_tag dom_id(post, :content) do
-    %span= post.content
+    %span{ class: class_names('fs-4': local_assigns[:is_large_text]) }= post.content
   .z-2.position-relative
     = link_to new_post_post_path(post), class: 'btn btn-link', data: { testid: "reply-new-link-#{post.id}" } do
       %i.bi.bi-chat
-    = link_to post_posts_path(post), class: 'btn btn-link' do
-      %small{ class: class_names('visually-hidden': post.children_count.zero?) }= post.children_count
+    %small{ class: class_names('visually-hidden': post.children_count.zero?) }= post.children_count
