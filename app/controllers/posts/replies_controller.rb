@@ -13,7 +13,7 @@ module Posts
     def create
       @reply = @post.children.new(reply_params)
       if @reply.save
-        redirect_to post_posts_path(@post), notice: t('posts.replied')
+        flash.now.notice = t('posts.replied')
       else
         render :new, status: :unprocessable_entity
       end
