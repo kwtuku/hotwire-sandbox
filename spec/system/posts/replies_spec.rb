@@ -26,10 +26,10 @@ RSpec.describe '返信', type: :system do
       it '作成できる' do
         visit root_path
         find("[data-testid='post-link-#{parent_post.id}']").click
-        expect(page).to have_button '登録する'
+        expect(page).to have_button '返信する'
         expect(page).to have_current_path post_path(parent_post)
         fill_in '内容', with: 'ボンソワール'
-        click_button '登録する'
+        click_button '返信する'
         expect(page).to have_content '投稿に返信しました'
         expect(page).to have_current_path post_path(parent_post)
         expect(page).to have_field '内容', with: ''
@@ -41,9 +41,9 @@ RSpec.describe '返信', type: :system do
       it '作成できない' do
         visit root_path
         find("[data-testid='post-link-#{parent_post.id}']").click
-        expect(page).to have_button '登録する'
+        expect(page).to have_button '返信する'
         expect(page).to have_current_path post_path(parent_post)
-        click_button '登録する'
+        click_button '返信する'
         expect(page).to have_content '入力してください'
         expect(page).to have_current_path post_path(parent_post)
       end

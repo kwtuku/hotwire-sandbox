@@ -2,4 +2,4 @@
   = bootstrap_form_with(model: [post, reply], scope: :reply) do |f|
     = f.text_area :content, hide_label: true, placeholder: t('posts.reply_to_post'), wrapper: { class: 'mb-2' },
       class: 'resize-none', data: { controller: 'autosize' }
-    = f.primary
+    = f.primary t('posts.reply')

@@ -154,6 +154,8 @@ ja:
       create: 登録する
       submit: 保存する
       update: 更新する
+      post:
+        create: 投稿する
   number:
     currency:
       format:
@@ -231,5 +233,6 @@ ja:
     post: 投稿
     replied: 投稿に返信しました
     replies: 返信一覧
+    reply: 返信する
     reply_to_post: 投稿に返信
     what_is_happening: いまどうしてる？

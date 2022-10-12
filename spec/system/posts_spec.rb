@@ -29,10 +29,10 @@ RSpec.describe '投稿', type: :system do
     context '入力内容が正しいとき' do
       it '作成できる' do
         visit root_path
-        expect(page).to have_button '登録する'
+        expect(page).to have_button '投稿する'
         expect(page).to have_current_path posts_path
         fill_in '内容', with: 'ニーハオ'
-        click_button '登録する'
+        click_button '投稿する'
         expect(page).to have_content '投稿を作成しました'
         expect(page).to have_current_path posts_path
         expect(page).to have_field '内容', with: ''
@@ -43,9 +43,9 @@ RSpec.describe '投稿', type: :system do
     context '入力内容が正しくないとき' do
       it '作成できない' do
         visit root_path
-        expect(page).to have_button '登録する'
+        expect(page).to have_button '投稿する'
         expect(page).to have_current_path posts_path
-        click_button '登録する'
+        click_button '投稿する'
         expect(page).to have_content '入力してください'
         expect(page).to have_current_path posts_path
       end
