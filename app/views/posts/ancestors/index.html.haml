@@ -1,0 +1,6 @@
+= render 'posts/header' do
+  %h1.mb-0= t('posts.ancestors')
+
+.mb-3
+  = turbo_frame_tag 'ancestors-container' do
+    = render partial: 'posts/post', collection: @ancestors

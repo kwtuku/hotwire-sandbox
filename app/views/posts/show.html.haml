@@ -1,7 +1,12 @@
 = render 'header' do
   %h1.mb-0= t('posts.post')
 
-.mt-n3= render 'post', post: @post, is_large_text: true
+.mt-n3
+  - if @post.has_parent?
+    = turbo_frame_tag 'ancestors-container', src: post_ancestors_path(@post), target: '_top' do
+      .p-5= render 'shared/spinner'
+
+= render 'post', post: @post, is_large_text: true
 
 = turbo_frame_tag dom_id(@post, :new_reply), src: new_post_post_path(@post) do
   .p-5= render 'shared/spinner'
