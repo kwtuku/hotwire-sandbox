@@ -6,7 +6,7 @@
       - if post.created_at != post.updated_at
         %span ･
         %span= t('posts.edited')
-    .dropdown.p-1
+    .dropdown.p-1.my-n2
       %button.btn.btn-link.px-1.py-0.z-2.position-relative{ data: { bs_toggle: 'dropdown',
         testid: "post-dropdown-#{post.id}" } }
         %i.bi.bi-three-dots
