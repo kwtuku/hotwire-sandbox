@@ -2,4 +2,4 @@
   %h1.mb-0= t('posts.reply_to_post')
 
 = turbo_frame_tag dom_id(@post, :new_reply) do
-  = render 'form', reply: @reply, post: @post
+  .mb-3.pb-3.border-bottom= render 'form', reply: @reply, post: @post

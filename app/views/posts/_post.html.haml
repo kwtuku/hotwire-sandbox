@@ -1,4 +1,4 @@
-%article.mt-3.pt-3.border-top.position-relative{ id: dom_id(post) }
+%article.mb-3.pb-3.border-bottom.position-relative{ id: dom_id(post) }
   .d-flex.justify-content-between.align-items-center
     .text-muted
       = link_to_unless_current tag.relative_time(datetime: post.created_at), post_path(post),
