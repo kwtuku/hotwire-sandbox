@@ -20,11 +20,6 @@ $h6-font-size: $font-size-base;
 $utilities: map-merge(
   $utilities,
   (
-    'resize': (
-      property: resize,
-      class: resize,
-      values: none,
-    ),
     'z-index': (
       property: z-index,
       class: z,
