@@ -21,5 +21,5 @@
           = link_to new_post_path, class: 'btn btn-primary rounded-pill' do
             %i.bi.bi-plus.fs-4
       %main.flex-fill.border-start.ps-3
-        .toast-container.position-fixed.bottom-0.start-50.translate-middle-x.p-3#flash-container= render 'layouts/flash'
         = yield
+    .toast-container.position-fixed.bottom-0.start-50.translate-middle-x.p-3#flash-container= render 'layouts/flash'
