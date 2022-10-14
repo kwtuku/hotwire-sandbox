@@ -16,4 +16,8 @@
         %li= button_to t('general.destroy'), post_path(post), method: :delete, class: 'dropdown-item text-danger',
           form: { data: { turbo_confirm: t('general.are_you_sure') } }
   = turbo_frame_tag dom_id(post, :content) do
-    %span= post.content
+    %span{ class: class_names('fs-4': local_assigns[:is_large_text]) }= post.content
+  .d-flex.align-items-center
+    .px-3.py-2
+      %i.bi.bi-chat
+    %small{ class: class_names('visually-hidden': post.children_count.zero?) }= post.children_count
