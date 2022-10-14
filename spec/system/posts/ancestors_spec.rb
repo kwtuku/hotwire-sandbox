@@ -9,19 +9,22 @@ RSpec.describe '祖先の投稿', type: :system do
     it '一覧が表示される' do
       visit root_path
       find("[data-testid='post-link-#{grand_parent_post.id}']").click
+
       expect(page).to have_content 'しりとり'
       expect(page).to have_current_path post_path(grand_parent_post)
 
       find("[data-testid='post-link-#{parent_post.id}']").click
+
       expect(page).to have_content 'りんご'
-      expect(page).to have_current_path post_path(parent_post)
       expect(page).to have_content 'しりとり'
+      expect(page).to have_current_path post_path(parent_post)
 
       find("[data-testid='post-link-#{post.id}']").click
+
       expect(page).to have_content 'ごりら'
-      expect(page).to have_current_path post_path(post)
       expect(page).to have_content 'しりとり'
       expect(page).to have_content 'りんご'
+      expect(page).to have_current_path post_path(post)
     end
   end
 end
