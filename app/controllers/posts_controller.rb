@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
-    @posts = Post.roots.default_order
+    @posts = Post.roots.default_order.page(params[:page]).without_count
   end
 
   def show; end

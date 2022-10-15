@@ -8,3 +8,6 @@
 
 .mb-3#posts-container
   = render partial: 'post', collection: @posts
+  %nav.nav.justify-content-center
+    = link_to_prev_page @posts, t('general.previous'), class: 'nav-link'
+    = link_to_next_page @posts, t('general.next'), class: 'nav-link'
