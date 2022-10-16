@@ -5,13 +5,20 @@ RSpec.describe '投稿', type: :system do
     before do
       create(:post, content: 'こんにちは')
       create(:post, content: 'オラ')
+      create_list(:post, 23)
+      create(:post, content: 'こんばんは')
     end
 
-    it '一覧が表示される' do
+    it '一覧が表示される、ページングされる' do
       visit root_path
 
-      expect(page).to have_content 'こんにちは'
+      expect(page).to have_content 'こんばんは'
       expect(page).to have_content 'オラ'
+
+      click_link '次へ'
+
+      expect(page).to have_content 'こんにちは'
+      expect(page).to have_current_path posts_path(page: 2)
     end
   end
 
