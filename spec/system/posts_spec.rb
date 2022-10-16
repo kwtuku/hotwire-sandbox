@@ -9,16 +9,16 @@ RSpec.describe '投稿', type: :system do
       create(:post, content: 'こんばんは')
     end
 
-    it '一覧が表示される、ページングされる' do
+    it '一覧が表示される、スクロールするとさらに投稿が表示される' do
       visit root_path
 
       expect(page).to have_content 'こんばんは'
       expect(page).to have_content 'オラ'
+      expect(page).not_to have_content 'こんにちは'
 
-      click_link '次へ'
+      execute_script('window.scrollBy(0,10000)')
 
       expect(page).to have_content 'こんにちは'
-      expect(page).to have_current_path posts_path(page: 2)
     end
   end
 
