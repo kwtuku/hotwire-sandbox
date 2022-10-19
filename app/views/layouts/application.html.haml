@@ -23,3 +23,14 @@
       %main.flex-fill.border-start.ps-3
         = yield
     .toast-container.position-fixed.bottom-0.start-50.translate-middle-x.p-3#flash-container= render 'layouts/flash'
+    .modal.fade#turbo-confirm-modal{ tabindex: '-1' }
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %h5.modal-title
+            %button.btn-close{ 'aria-label': 'Close', 'data-bs-dismiss': 'modal', type: 'button' }
+          .modal-body
+            %span#turbo-confirm-modal-message= t('general.are_you_sure')
+          .modal-footer
+            %button.btn.btn-secondary{ 'data-bs-dismiss': 'modal', type: 'button' }= t('general.cancel')
+            %button.btn.btn-primary#turbo-confirm-modal-confirm-button{ type: 'button' }= t('general.ok')
