@@ -229,6 +229,7 @@ ja:
     ok: OK
     updated: '%{resource_name}を更新しました'
   posts:
+    destroy_post: 投稿を削除する
     edited: 編集済み
     latest_posts: 最新の投稿
     post: 投稿
