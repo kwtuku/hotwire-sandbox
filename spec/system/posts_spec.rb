@@ -122,7 +122,11 @@ RSpec.describe '投稿', type: :system do
     it 'フラッシュメッセージが表示される、削除した投稿が表示されなくなる' do
       visit root_path
       find("[data-testid='post-dropdown-#{post.id}']").click
-      accept_confirm { click_button '削除' }
+      click_button '削除'
+
+      expect(page).to have_content '本当によろしいですか？'
+
+      click_button '投稿を削除する'
 
       expect(page).to have_content '投稿を削除しました'
       expect(page).not_to have_content 'ナマステ'

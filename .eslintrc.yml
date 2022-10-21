@@ -4,6 +4,8 @@ env:
 extends:
   - eslint:recommended
   - prettier
+globals:
+  Turbo: readonly
 overrides: []
 parserOptions:
   ecmaVersion: latest
