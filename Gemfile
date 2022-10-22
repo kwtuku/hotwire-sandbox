@@ -17,6 +17,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'ancestry'
 gem 'bootstrap_form'
+gem 'devise'
 gem 'haml-rails'
 gem 'kaminari'
 
