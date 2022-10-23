@@ -32,6 +32,7 @@ group :development do
   gem 'web-console'
 
   gem 'haml_lint', require: false
+  gem 'letter_opener_web'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
