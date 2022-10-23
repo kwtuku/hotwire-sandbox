@@ -14,12 +14,19 @@
       %header.sticky-top.vh-100.p-3.d-flex.flex-column.align-items-center
         = link_to posts_path do
           %i.bi.bi-lightning-fill.fs-2
-        %nav.nav.flex-column.mt-2
+        %nav.nav.flex-column.mt-3
           = link_to posts_path, class: 'nav-link' do
             %i.bi.bi-house.fs-4
-        .mt-auto
+        .mt-3
           = link_to new_post_path, class: 'btn btn-primary rounded-pill' do
             %i.bi.bi-plus.fs-4
+        - if user_signed_in?
+          .dropdown.mt-auto
+            %button.btn.btn-link.p-0.rounded-pill{ data: { bs_toggle: 'dropdown' } }
+              = image_tag 'avatar.png', width: '50', height: '50', class: 'rounded-circle'
+            %ul.dropdown-menu
+              %li= button_to t('general.sign_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item',
+                form: { data: { turbo: false } }
       %main.flex-fill.border-start.ps-3
         = yield
     .toast-container.position-fixed.bottom-0.start-50.translate-middle-x.p-3#flash-container= render 'layouts/flash'
