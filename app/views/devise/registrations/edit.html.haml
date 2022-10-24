@@ -1,49 +1,22 @@
 %h2= t('.title', resource: resource.model_name.human)
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put,
-  data: { turbo: false } }) do |f|
-  = render 'devise/shared/error_messages', resource: resource
-  .field
-    = f.label :name
-    %br
-    = f.text_field :name, autofocus: true, autocomplete: 'name'
-  .field
-    = f.label :username
-    %br
-    = f.text_field :username, autocomplete: 'username'
-  .field
-    = f.label :description
-    %br
-    = f.text_area :description, autocomplete: 'description'
-  .field
-    = f.label :email
-    %br
-    = f.email_field :email, autocomplete: 'email'
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+= bootstrap_form_with(model: resource, url: registration_path(resource_name), method: :put,
+  data: { turbo: false }) do |f|
+  = f.alert_message t('errors.messages.not_saved', count: resource.errors.count,
+    resource: resource.class.model_name.human.downcase)
+  = f.text_field :name
+  = f.text_field :username
+  = f.text_area :description
+  = f.email_field :email
+  - if resource.pending_reconfirmation?
     %div= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email)
-  .field
-    = f.label :password
-    %i
-      (#{t('.leave_blank_if_you_don_t_want_to_change_it')})
-    %br
-    = f.password_field :password, autocomplete: 'new-password'
-    - if @minimum_password_length
-      %br
-      %em= t('devise.shared.minimum_password_length', count: @minimum_password_length)
-  .field
-    = f.label :password_confirmation
-    %br
-    = f.password_field :password_confirmation, autocomplete: 'new-password'
-  .field
-    = f.label :current_password
-    %i
-      (#{t('.we_need_your_current_password_to_confirm_your_changes')})
-    %br
-    = f.password_field :current_password, autocomplete: 'current-password'
-  .actions
-    = f.submit t('.update')
+  = t('.leave_blank_if_you_don_t_want_to_change_it')
+  = f.password_field :password, help: t('devise.shared.minimum_password_length', count: @minimum_password_length)
+  = f.password_field :password_confirmation
+  = f.password_field :current_password, help: t('.we_need_your_current_password_to_confirm_your_changes')
+  = f.primary t('.update')
 %h3= t('.cancel_my_account')
 %p
   = t('.unhappy')
   = button_to t('.cancel_my_account'), registration_path(resource_name), method: :delete,
-    form: { data: { turbo: false } }
+    class: 'btn btn-outline-danger', form: { data: { turbo: false } }
 = link_to t('devise.shared.links.back'), :back
