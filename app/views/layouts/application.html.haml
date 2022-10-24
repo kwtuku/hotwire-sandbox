@@ -21,7 +21,7 @@
           = link_to new_post_path, class: 'btn btn-primary rounded-pill' do
             %i.bi.bi-plus.fs-4
         - if user_signed_in?
-          .dropdown.mt-auto
+          .dropdown.mt-auto{ data: { testid: 'user-dropdown' } }
             %button.btn.btn-link.p-0.rounded-pill{ data: { bs_toggle: 'dropdown' } }
               = image_tag 'avatar.png', width: '50', height: '50', class: 'rounded-circle'
             %ul.dropdown-menu
