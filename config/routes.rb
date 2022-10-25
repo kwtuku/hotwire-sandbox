@@ -4,12 +4,14 @@ Rails.application.routes.draw do
   root to: redirect('/posts')
 
   scope module: :users do
-    resources :posts, only: %i[new edit create update destroy]
+    resources :posts, only: %i[new edit create update destroy] do
+      resources :replies, only: %i[new create], module: :posts, as: :posts
+    end
   end
 
   resources :posts, only: %i[index show] do
     resources :ancestors, only: %i[index], module: :posts
-    resources :replies, only: %i[index new create], module: :posts, as: :posts
+    resources :replies, only: %i[index], module: :posts, as: :posts
   end
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
