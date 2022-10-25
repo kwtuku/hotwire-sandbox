@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
 
   root to: redirect('/posts')
-  resources :posts do
+
+  scope module: :users do
+    resources :posts, only: %i[new edit create update destroy]
+  end
+
+  resources :posts, only: %i[index show] do
     resources :ancestors, only: %i[index], module: :posts
     resources :replies, only: %i[index new create], module: :posts, as: :posts
   end
