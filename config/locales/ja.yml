@@ -227,6 +227,7 @@ ja:
     loading: 読み込み中...
     new_resource: '%{resource_name}を作成'
     ok: OK
+    sign_out: ログアウト
     updated: '%{resource_name}を更新しました'
   posts:
     destroy_post: 投稿を削除する
