@@ -10,6 +10,7 @@
 .mb-3#posts-container
   = turbo_frame_tag "posts-page-#{@posts.current_page}", target: '_top' do
     = render partial: 'post', collection: @posts
-    = turbo_frame_tag "posts-page-#{@posts.next_page}", target: '_top', src: path_to_next_page(@posts),
-      loading: :lazy do
-      .p-5= render 'shared/spinner'
+    - if @posts.next_page
+      = turbo_frame_tag "posts-page-#{@posts.next_page}", target: '_top', src: path_to_next_page(@posts),
+        loading: :lazy do
+        .p-5= render 'shared/spinner'
