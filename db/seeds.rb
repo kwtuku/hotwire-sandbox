@@ -1,3 +1,22 @@
+User.destroy_all
+Post.destroy_all
+
+alice = User.create!(
+  email: 'alice@example.com',
+  password: 'password',
+  confirmed_at: Time.current,
+  name: 'アリス',
+  username: 'alice',
+  description: 'アリスです'
+)
+bob = User.create!(
+  email: 'bob@example.com',
+  password: 'password',
+  confirmed_at: Time.current,
+  name: 'ボブ',
+  username: 'bob'
+)
+
 contents = [
   { content: 'a' * 300 },
   { content: 'おはよう' },
@@ -12,15 +31,18 @@ contents = [
 ]
 
 10.times do
-  Post.create!(contents.shuffle)
+  attributes = contents.map { |content| { user: [alice, bob].sample }.merge(content) }
+  Post.create!(attributes.shuffle)
 end
 
 Post.roots.last(10).each_with_index do |post, index|
-  post.children.create!(contents.shuffle)
+  attributes = contents.map { |content| { user: [alice, bob].sample }.merge(content) }
+  post.children.create!(attributes.shuffle)
 
   next unless index >= 7
 
   post.children.each do |child_post|
-    child_post.children.create!(contents.shuffle)
+    attributes = contents.map { |content| { user: [alice, bob].sample }.merge(content) }
+    child_post.children.create!(attributes.shuffle)
   end
 end
