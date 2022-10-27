@@ -31,6 +31,7 @@ end
 group :development do
   gem 'web-console'
 
+  gem 'bullet'
   gem 'haml_lint', require: false
   gem 'letter_opener_web'
   gem 'rubocop', require: false
