@@ -3,7 +3,7 @@ module Posts
     before_action :set_post
 
     def index
-      @ancestors = @post.ancestors
+      @ancestors = @post.ancestors.preload(:user)
     end
 
     private
