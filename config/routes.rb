@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :posts, only: %i[index show] do
     resources :ancestors, only: %i[index], module: :posts
-    resources :replies, only: %i[index], module: :posts, as: :posts
+    resources :replies, only: %i[index], module: :posts
   end
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?

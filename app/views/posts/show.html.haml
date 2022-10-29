@@ -12,5 +12,5 @@
     .p-5= render 'shared/spinner'
 
 .mb-3
-  = turbo_frame_tag 'replies-container', src: post_posts_path(@post), target: '_top' do
+  = turbo_frame_tag 'replies-container', src: post_replies_path(@post), target: '_top' do
     .p-5= render 'shared/spinner'
