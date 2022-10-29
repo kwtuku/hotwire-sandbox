@@ -1,6 +1,4 @@
-.p-1
-  = bootstrap_form_with(model: post) do |f|
-    = f.text_area :content, hide_label: true, wrapper: { class: 'mb-2' }, placeholder: t('posts.what_is_happening'),
-      data: { controller: 'autosize' }
-    = link_to t('general.cancel'), post_path(post), class: 'btn btn-light' if post.persisted?
-    = f.primary
+= bootstrap_form_with(model: post, class: 'p-1') do |f|
+  = f.text_area :content, hide_label: true, placeholder: t('posts.what_is_happening'), data: { controller: 'autosize' }
+  = link_to t('general.cancel'), post_path(post), class: 'btn btn-light' if post.persisted?
+  = f.primary
