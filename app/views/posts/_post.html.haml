@@ -1,30 +1,45 @@
-%article.mb-3.pb-3.border-bottom.position-relative.d-flex{ id: dom_id(post) }
-  .me-3= image_tag 'https://placehold.jp/100x100.png', width: '50', height: '50', class: 'rounded-circle'
-  .flex-fill
-    .d-flex.justify-content-between.align-items-center
-      .text-muted
-        %span.text-body.fw-bold= post.user.name
-        %span @#{post.user.username}
+%article.mb-3.pb-3.border-bottom.position-relative{ id: dom_id(post) }
+  .d-flex
+    .me-3= image_tag 'https://placehold.jp/100x100.png', width: '50', height: '50', class: 'rounded-circle'
+    .flex-fill
+      .d-flex.justify-content-between.align-items-center
+        .text-muted
+          - if local_assigns.key?(:post_counter)
+            %span.text-body.fw-bold= post.user.name
+            %span @#{post.user.username}
+            %span ･
+            = link_to_unless_current tag.relative_time(datetime: post.created_at), post_path(post),
+              class: 'text-reset stretched-link', data: { testid: "post-link-#{post.id}" }
+            - if post.created_at != post.updated_at
+              %span ･
+              %span= t('posts.edited')
+          - else
+            .text-body.fw-bold= post.user.name
+            %div @#{post.user.username}
+        - if post.user == current_user
+          .dropdown.p-1.my-n3
+            %button.btn.btn-link.z-2.position-relative{ data: { bs_toggle: 'dropdown',
+              testid: "post-dropdown-#{post.id}" } }
+              %i.bi.bi-three-dots
+            %ul.dropdown-menu.dropdown-menu-end
+              %li= link_to t('general.edit'), edit_post_path(post), class: 'dropdown-item',
+                data: { turbo_frame: dom_id(post, :content) }
+              %li= button_to t('general.destroy'), post_path(post), method: :delete, class: 'dropdown-item text-danger',
+                form: { data: { turbo_confirm: t('general.are_you_sure'),
+                turbo_confirm_button: t('posts.destroy_post') } }
+      - if local_assigns.key?(:post_counter)
+        = turbo_frame_tag dom_id(post, :content) do
+          %span= post.content
+        .mt-3.d-flex.align-items-center
+          %i.bi.bi-chat
+          .ms-3
+            %small{ class: class_names('visually-hidden': post.children_count.zero?) }= post.children_count
+  - unless local_assigns.key?(:post_counter)
+    .mt-3.fs-4
+      = turbo_frame_tag dom_id(post, :content) do
+        %span= post.content
+    .mt-3.text-muted
+      %local-time{ datetime: post.created_at }= l(post.created_at)
+      - if post.created_at != post.updated_at
         %span ･
-        = link_to_unless_current tag.relative_time(datetime: post.created_at), post_path(post),
-          class: 'text-reset stretched-link', data: { testid: "post-link-#{post.id}" }
-        - if post.created_at != post.updated_at
-          %span ･
-          %span= t('posts.edited')
-      - if post.user == current_user
-        .dropdown.p-1.my-n3
-          %button.btn.btn-link.z-2.position-relative{ data: { bs_toggle: 'dropdown',
-            testid: "post-dropdown-#{post.id}" } }
-            %i.bi.bi-three-dots
-          %ul.dropdown-menu.dropdown-menu-end
-            %li= link_to t('general.edit'), edit_post_path(post), class: 'dropdown-item',
-              data: { turbo_frame: dom_id(post, :content) }
-            %li= button_to t('general.destroy'), post_path(post), method: :delete, class: 'dropdown-item text-danger',
-              form: { data: { turbo_confirm: t('general.are_you_sure'),
-              turbo_confirm_button: t('posts.destroy_post') } }
-    = turbo_frame_tag dom_id(post, :content) do
-      %span{ class: class_names('fs-4': local_assigns[:is_large_text]) }= post.content
-    .mt-3.d-flex.align-items-center
-      %i.bi.bi-chat
-      .ms-3
-        %small{ class: class_names('visually-hidden': post.children_count.zero?) }= post.children_count
+        %span= t('posts.edited')
