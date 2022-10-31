@@ -1,4 +1,4 @@
-= render 'header' do
+= render 'posts/header' do
   .flex-fill
     = link_to posts_path, class: 'text-body text-decoration-none' do
       %h1.mb-0= t('posts.latest_posts')
@@ -9,7 +9,7 @@
 
 .mb-3#posts-container
   = turbo_frame_tag "posts-page-#{@posts.current_page}", target: '_top' do
-    = render partial: 'post', collection: @posts
+    = render partial: 'posts/post', collection: @posts
     - if @posts.next_page
       = turbo_frame_tag "posts-page-#{@posts.next_page}", target: '_top', src: path_to_next_page(@posts),
         loading: :lazy do
