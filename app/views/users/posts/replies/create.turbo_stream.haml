@@ -4,4 +4,4 @@
   = turbo_frame_tag dom_id(@post, :new_reply), src: new_post_post_path(@post) do
     .p-5= render 'shared/spinner'
 
-= turbo_stream.prepend 'replies-container', partial: 'posts/post', locals: { post: @reply }
+= turbo_stream.prepend 'replies-container', partial: 'posts/post', collection: [@reply], as: :post

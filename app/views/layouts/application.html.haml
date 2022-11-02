@@ -23,7 +23,7 @@
         - if user_signed_in?
           .dropdown.mt-auto{ data: { testid: 'user-dropdown' } }
             %button.btn.btn-link.p-0.rounded-pill{ data: { bs_toggle: 'dropdown' } }
-              = image_tag 'avatar.png', width: '50', height: '50', class: 'rounded-circle'
+              = image_tag 'https://placehold.jp/100x100.png', width: '50', height: '50', class: 'rounded-circle'
             %ul.dropdown-menu
               %li= button_to t('general.sign_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item',
                 form: { data: { turbo: false } }

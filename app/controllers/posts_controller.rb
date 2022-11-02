@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.roots.default_order.page(params[:page]).without_count
+    @posts = Post.roots.preload(:user).default_order.page(params[:page]).without_count
   end
 
   def show

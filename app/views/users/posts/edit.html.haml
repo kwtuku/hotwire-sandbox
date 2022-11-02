@@ -2,4 +2,4 @@
   %h1.mb-0= t('general.editing_resource', resource_name: Post.model_name.human)
 
 = turbo_frame_tag dom_id(@post, :content) do
-  .z-2.position-relative.mt-2{ data: { testid: "post-edit-form-#{@post.id}" } }= render 'form', post: @post
+  .z-2.position-relative.mt-3{ data: { testid: "post-edit-form-#{@post.id}" } }= render 'users/posts/form', post: @post

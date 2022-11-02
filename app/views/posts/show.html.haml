@@ -1,16 +1,16 @@
-= render 'header' do
+= render 'posts/header' do
   %h1.mb-0= t('posts.post')
 
 - if @post.has_parent?
   = turbo_frame_tag 'ancestors-container', src: post_ancestors_path(@post), target: '_top' do
     .p-5= render 'shared/spinner'
 
-= render 'post', post: @post, is_large_text: true
+= render 'posts/post', post: @post
 
 - if user_signed_in?
   = turbo_frame_tag dom_id(@post, :new_reply), src: new_post_post_path(@post) do
     .p-5= render 'shared/spinner'
 
 .mb-3
-  = turbo_frame_tag 'replies-container', src: post_posts_path(@post), target: '_top' do
+  = turbo_frame_tag 'replies-container', src: post_replies_path(@post), target: '_top' do
     .p-5= render 'shared/spinner'
