@@ -1,4 +1,5 @@
-%article.mb-3.pb-3.border-bottom.position-relative{ id: dom_id(post) }
+- id = local_assigns.key?(:post_counter) ? dom_id(post) : dom_id(post, :detail)
+%article.mb-3.pb-3.border-bottom.position-relative{ id: id }
   .d-flex
     .me-3= image_tag 'https://placehold.jp/100x100.png', width: '50', height: '50', class: 'rounded-circle'
     .flex-fill
