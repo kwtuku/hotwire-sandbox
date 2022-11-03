@@ -1,5 +1,6 @@
 = render 'posts/header' do
   %h1.mb-0= t('general.new_resource', resource_name: Post.model_name.human)
 
-= turbo_frame_tag dom_id(@post) do
-  .mb-3.pb-3.border-bottom= render 'users/posts/form', post: @post
+.mb-3.pb-3.border-bottom
+  = turbo_frame_tag dom_id(@post) do
+    = render 'users/posts/form', post: @post

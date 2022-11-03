@@ -4,8 +4,9 @@
       %h1.mb-0= t('posts.latest_posts')
 
 - if user_signed_in?
-  = turbo_frame_tag dom_id(Post.new), src: new_post_path do
-    .p-5= render 'shared/spinner'
+  .mb-3.pb-3.border-bottom
+    = turbo_frame_tag dom_id(Post.new) do
+      = render 'users/posts/form', post: Post.new
 
 .mb-3#posts-container
   = turbo_frame_tag "posts-page-#{@posts.current_page}", target: '_top' do
