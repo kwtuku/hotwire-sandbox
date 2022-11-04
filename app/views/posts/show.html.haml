@@ -8,9 +8,11 @@
 = render 'posts/post', post: @post
 
 - if user_signed_in?
-  .mb-3.pb-3.border-bottom
-    = turbo_frame_tag dom_id(@post, :new_reply) do
-      = render 'users/posts/replies/form', reply: current_user.posts.new(parent: @post), post: @post
+  .mb-3.pb-3.border-bottom.d-flex
+    .me-3= image_tag 'https://placehold.jp/100x100.png', width: '50', height: '50', class: 'rounded-circle'
+    .flex-fill
+      = turbo_frame_tag dom_id(@post, :new_reply) do
+        = render 'users/posts/replies/form', reply: current_user.posts.new(parent: @post), post: @post
 
 .mb-3
   = turbo_frame_tag 'replies-container', src: post_replies_path(@post), target: '_top' do
