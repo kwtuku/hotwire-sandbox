@@ -4,13 +4,11 @@ module Users
       before_action :set_post
 
       def new
-        @reply = current_user.posts.new
-        @reply.parent = @post
+        @reply = current_user.posts.new(parent: @post)
       end
 
       def create
-        @reply = current_user.posts.new(reply_params)
-        @reply.parent = @post
+        @reply = current_user.posts.new(parent: @post, **reply_params)
         if @reply.save
           flash.now.notice = t('posts.replied')
         else

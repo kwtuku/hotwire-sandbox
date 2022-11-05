@@ -1,7 +1,6 @@
 = turbo_stream.update 'flash-container', partial: 'layouts/flash'
 
-= turbo_stream.replace dom_id(@post, :new_reply) do
-  = turbo_frame_tag dom_id(@post, :new_reply), src: new_post_post_path(@post) do
-    .p-5= render 'shared/spinner'
+= turbo_stream.update dom_id(@post, :new_reply) do
+  = render 'users/posts/replies/form', reply: current_user.posts.new(parent: @post), post: @post
 
 = turbo_stream.prepend 'replies-container', partial: 'posts/post', collection: [@reply], as: :post

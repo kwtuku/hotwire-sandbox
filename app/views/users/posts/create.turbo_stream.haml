@@ -1,7 +1,6 @@
 = turbo_stream.update 'flash-container', partial: 'layouts/flash'
 
-= turbo_stream.replace dom_id(Post.new) do
-  = turbo_frame_tag dom_id(Post.new), src: new_post_path do
-    .p-5= render 'shared/spinner'
+= turbo_stream.update dom_id(Post.new) do
+  = render 'users/posts/form', post: Post.new
 
 = turbo_stream.prepend 'posts-container', partial: 'posts/post', collection: [@post]
