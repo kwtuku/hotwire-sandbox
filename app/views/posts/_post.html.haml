@@ -31,10 +31,22 @@
       - if local_assigns.key?(:post_counter)
         = turbo_frame_tag dom_id(post, :content) do
           %span= post.content
-        .mt-3.d-flex.align-items-center
-          %i.bi.bi-chat
-          .ms-3
-            %small{ class: class_names('visually-hidden': post.children_count.zero?) }= post.children_count
+        .mt-3.z-2.position-relative.d-flex
+          .w-100.d-flex.align-items-center
+            %i.bi.bi-chat
+            .ms-3
+              %small{ class: class_names('visually-hidden': post.children_count.zero?) }= post.children_count
+          .w-100.d-flex.align-items-center{ id: dom_id(post, :like) }
+            - if user_signed_in? && current_user_liked?(post)
+              = button_to post_like_path(post), method: :delete, class: 'btn btn-link' do
+                %i.bi.bi-heart-fill.text-danger
+            - elsif user_signed_in?
+              = button_to post_like_path(post), class: 'btn btn-link' do
+                %i.bi.bi-heart.text-body
+            - else
+              %i.bi.bi-heart
+            .ms-3
+              %small{ class: class_names('visually-hidden': post.likes_count.zero?) }= post.likes_count
   - unless local_assigns.key?(:post_counter)
     .mt-3.fs-4
       = turbo_frame_tag dom_id(post, :content) do

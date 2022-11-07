@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   scope module: :users do
     resources :posts, only: %i[new edit create update destroy] do
+      resource :like, only: %i[create destroy], module: :posts
       resources :replies, only: %i[new create], module: :posts, as: :posts
     end
   end

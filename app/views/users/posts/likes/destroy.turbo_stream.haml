@@ -1,0 +1,5 @@
+= turbo_stream.update dom_id(@post, :like) do
+  = button_to post_like_path(@post), class: 'btn btn-link' do
+    %i.bi.bi-heart.text-body
+  .ms-3
+    %small{ class: class_names('visually-hidden': @post.likes_count.zero?) }= @post.likes_count
