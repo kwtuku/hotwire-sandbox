@@ -42,3 +42,5 @@
       - if post.created_at != post.updated_at
         %span ･
         %span= t('posts.edited')
+    %div{ id: dom_id(post, :stats_for_detail) }
+      = render 'posts/stats_for_detail', post: post

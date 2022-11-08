@@ -1,0 +1,13 @@
+.mt-3.pt-3.border-top{ class: class_names('visually-hidden': post.likes_count.zero?) }
+  %span.fw-bold= post.likes_count
+  %span.text-muted= t('posts.likes')
+.mt-3.pt-3.border-top.d-flex.justify-content-around.fs-5
+  %i.bi.bi-chat
+  - if user_signed_in? && current_user_liked?(post)
+    = button_to post_like_path(post), method: :delete, class: 'btn btn-link my-n3' do
+      %i.bi.bi-heart-fill.text-danger.fs-5
+  - elsif user_signed_in?
+    = button_to post_like_path(post), class: 'btn btn-link my-n3' do
+      %i.bi.bi-heart.text-body.fs-5
+  - else
+    %i.bi.bi-heart
