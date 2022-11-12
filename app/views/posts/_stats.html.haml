@@ -1,0 +1,18 @@
+.d-flex
+  .w-100.d-flex.align-items-center
+    %i.bi.bi-chat
+    .ms-3
+      %small{ class: class_names('visually-hidden': post.children_count.zero?) }= post.children_count
+  .w-100.d-flex.align-items-center
+    - if user_signed_in? && current_user_liked?(post)
+      = button_to post_like_path(post), method: :delete, class: 'btn btn-link',
+        data: { testid: "post-unlike-button-#{post.id}" } do
+        %i.bi.bi-heart-fill.text-danger
+    - elsif user_signed_in?
+      = button_to post_like_path(post), class: 'btn btn-link', data: { testid: "post-like-button-#{post.id}" } do
+        %i.bi.bi-heart.text-body
+    - else
+      %i.bi.bi-heart{ data: { testid: "post-like-icon-#{post.id}" } }
+    .ms-3
+      %small{ class: class_names('visually-hidden': post.likes_count.zero?),
+        data: { testid: "post-likes-count-#{post.id}" } }= post.likes_count

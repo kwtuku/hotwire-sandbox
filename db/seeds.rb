@@ -1,5 +1,6 @@
 User.destroy_all
 Post.destroy_all
+Like.destroy_all
 
 alice = User.create!(
   email: 'alice@example.com',
@@ -44,5 +45,20 @@ Post.roots.last(10).each_with_index do |post, index|
   post.children.each do |child_post|
     attributes = contents.map { |content| { user: [alice, bob].sample }.merge(content) }
     child_post.children.create!(attributes.shuffle)
+  end
+end
+
+posts = Post.roots.last(10)
+50.times do |n|
+  user = User.create!(
+    email: "user#{n}@example.com",
+    password: 'password',
+    confirmed_at: Time.current,
+    name: "user#{n}",
+    username: "user#{n}"
+  )
+
+  posts.each do |post|
+    user.likes.create!(post: post)
   end
 end

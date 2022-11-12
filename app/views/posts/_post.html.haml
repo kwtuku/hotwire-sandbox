@@ -31,10 +31,8 @@
       - if local_assigns.key?(:post_counter)
         = turbo_frame_tag dom_id(post, :content) do
           %span= post.content
-        .mt-3.d-flex.align-items-center
-          %i.bi.bi-chat
-          .ms-3
-            %small{ class: class_names('visually-hidden': post.children_count.zero?) }= post.children_count
+        .mt-3.z-2.position-relative{ id: dom_id(post, :stats) }
+          = render 'posts/stats', post: post
   - unless local_assigns.key?(:post_counter)
     .mt-3.fs-4
       = turbo_frame_tag dom_id(post, :content) do
@@ -44,3 +42,5 @@
       - if post.created_at != post.updated_at
         %span ･
         %span= t('posts.edited')
+    %div{ id: dom_id(post, :stats_for_detail) }
+      = render 'posts/stats_for_detail', post: post
