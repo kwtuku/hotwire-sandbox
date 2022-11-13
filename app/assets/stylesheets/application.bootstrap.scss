@@ -20,6 +20,10 @@ $h6-font-size: $font-size-base;
 $utilities: map-merge(
   $utilities,
   (
+    'overflow-y': (
+      property: overflow-y,
+      values: scroll,
+    ),
     'z-index': (
       property: z-index,
       class: z,
