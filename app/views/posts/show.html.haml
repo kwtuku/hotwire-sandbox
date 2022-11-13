@@ -14,6 +14,8 @@
       = turbo_frame_tag dom_id(@post, :new_reply) do
         = render 'users/posts/replies/form', reply: current_user.posts.new(parent: @post), post: @post
 
-.mb-3
+- if @post.children_count.positive?
   = turbo_frame_tag 'replies-container', src: post_replies_path(@post), target: '_top' do
     .p-5= render 'shared/spinner'
+- else
+  #replies-container
