@@ -1,5 +1,5 @@
 !!!
-%html.overflow-y-scroll
+%html
   %head
     %meta{ content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type' }
     %title HotwireSandbox
@@ -9,7 +9,7 @@
     = csp_meta_tag
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
     = javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true
-  %body.text-break
+  %body.text-break.always-scrollbar
     .custom-container.d-flex
       %header.sticky-top.vh-100.p-3.d-flex.flex-column.align-items-center
         = link_to posts_path do

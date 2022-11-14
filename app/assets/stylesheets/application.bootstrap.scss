@@ -20,10 +20,6 @@ $h6-font-size: $font-size-base;
 $utilities: map-merge(
   $utilities,
   (
-    'overflow-y': (
-      property: overflow-y,
-      values: scroll,
-    ),
     'z-index': (
       property: z-index,
       class: z,
@@ -42,4 +38,9 @@ $utilities: map-merge(
 
 .turbo-progress-bar {
   background-color: $primary;
+}
+
+// Utility API で定義すると !important がついて、モーダルが開いているときもスクロールバーが表示されてしまう
+.always-scrollbar {
+  overflow-y: scroll;
 }
