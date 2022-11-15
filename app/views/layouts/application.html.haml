@@ -14,9 +14,11 @@
       %header.sticky-top.vh-100.p-3.d-flex.flex-column.align-items-center
         = link_to posts_path do
           %i.bi.bi-lightning-fill.fs-2
-        %nav.nav.flex-column.mt-3
+        %nav.nav.flex-column.mt-3.fs-4
           = link_to posts_path, class: 'nav-link' do
-            %i.bi.bi-house.fs-4
+            %i.bi.bi-house
+          = link_to edit_user_registration_path, class: 'nav-link' do
+            %i.bi.bi-gear
         .mt-3
           = link_to new_post_path, class: 'btn btn-primary rounded-pill' do
             %i.bi.bi-plus.fs-4
