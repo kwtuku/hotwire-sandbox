@@ -17,12 +17,13 @@
         %nav.nav.flex-column.mt-3.fs-4
           = link_to posts_path, class: 'nav-link' do
             %i.bi.bi-house
-          = link_to edit_user_registration_path, class: 'nav-link' do
-            %i.bi.bi-gear
-        .mt-3
-          = link_to new_post_path, class: 'btn btn-primary rounded-pill' do
-            %i.bi.bi-plus.fs-4
+          - if user_signed_in?
+            = link_to edit_user_registration_path, class: 'nav-link' do
+              %i.bi.bi-gear
         - if user_signed_in?
+          .mt-3
+            = link_to new_post_path, class: 'btn btn-primary rounded-pill' do
+              %i.bi.bi-plus.fs-4
           .dropdown.mt-auto{ data: { testid: 'user-dropdown' } }
             %button.btn.btn-link.p-0.rounded-pill{ data: { bs_toggle: 'dropdown' } }
               = image_tag 'https://placehold.jp/100x100.png', width: '50', height: '50', class: 'rounded-circle'
@@ -40,3 +41,10 @@
           .modal-footer.border-top-0
             %button.btn.btn-light{ 'data-bs-dismiss': 'modal', type: 'button' }= t('general.cancel')
             %button.btn.btn-danger#turbo-confirm-modal-confirm-button{ type: 'button' }= t('general.ok')
+    - if !user_signed_in? && !devise_controller?
+      .fixed-bottom.alert.alert-primary.mb-0.rounded-0{ role: 'alert' }
+        .custom-container.d-flex.align-items-center
+          .h3.mb-0= t('general.do_not_miss_what_is_happening')
+          .ms-auto
+            = link_to t('general.sign_in'), new_user_session_path, class: 'btn btn-primary'
+            = link_to t('general.sign_up'), new_user_registration_path, class: 'btn btn-light'
