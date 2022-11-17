@@ -7,7 +7,12 @@ RSpec.describe 'ユーザー', type: :system do
     context '入力内容が有効なとき' do
       it 'フラッシュメッセージが表示される' do
         sign_in user
-        visit edit_user_registration_path
+        visit root_path
+        find("[data-testid='edit-user-link']").click
+
+        expect(page).to have_button '更新'
+        expect(page).to have_current_path edit_user_registration_path
+
         fill_in '名前', with: '新しい名前'
         fill_in 'ユーザー名', with: 'new'
         fill_in 'Eメール', with: 'new@example.com'
@@ -24,7 +29,12 @@ RSpec.describe 'ユーザー', type: :system do
     context '入力内容が無効なとき' do
       it 'エラーメッセージが表示される' do
         sign_in user
-        visit edit_user_registration_path
+        visit root_path
+        find("[data-testid='edit-user-link']").click
+
+        expect(page).to have_button '更新'
+        expect(page).to have_current_path edit_user_registration_path
+
         click_button '更新'
 
         expect(page).to have_content 'エラーが発生したため ユーザー は保存されませんでした。'
@@ -39,7 +49,12 @@ RSpec.describe 'ユーザー', type: :system do
 
     it 'フラッシュメッセージが表示される' do
       sign_in user
-      visit edit_user_registration_path
+      visit root_path
+      find("[data-testid='edit-user-link']").click
+
+      expect(page).to have_button '更新'
+      expect(page).to have_current_path edit_user_registration_path
+
       click_button 'アカウント削除'
 
       expect(page).to have_content 'アカウントを削除しました。またのご利用をお待ちしております。'

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'アカウント登録して有効化してログイン', type: :system do
   context '入力内容が有効なとき' do
     it 'フラッシュメッセージが表示される、メールが送信される、メールのリンクを開くとログインできるようになる' do
-      visit new_user_session_path
+      visit root_path
       click_link 'アカウント登録'
 
       expect(page).to have_button 'アカウント登録'
@@ -41,7 +41,7 @@ RSpec.describe 'アカウント登録して有効化してログイン', type: :
 
   context '入力内容が無効なとき' do
     it 'エラーメッセージが表示される' do
-      visit new_user_session_path
+      visit root_path
       click_link 'アカウント登録'
 
       expect(page).to have_button 'アカウント登録'

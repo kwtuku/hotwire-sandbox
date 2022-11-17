@@ -5,7 +5,12 @@ RSpec.describe 'アカウント確認メール再送', type: :system do
 
   context '入力内容が有効なとき' do
     it 'フラッシュメッセージが表示される、メールが送信される' do
-      visit new_user_session_path
+      visit root_path
+      click_link 'ログイン'
+
+      expect(page).to have_button 'ログイン'
+      expect(page).to have_current_path new_user_session_path
+
       click_link 'アカウント確認のメールを受け取っていませんか？'
 
       expect(page).to have_button 'アカウント確認メール再送'
@@ -26,7 +31,12 @@ RSpec.describe 'アカウント確認メール再送', type: :system do
 
   context '入力内容が無効なとき' do
     it 'エラーメッセージが表示される' do
-      visit new_user_session_path
+      visit root_path
+      click_link 'ログイン'
+
+      expect(page).to have_button 'ログイン'
+      expect(page).to have_current_path new_user_session_path
+
       click_link 'アカウント確認のメールを受け取っていませんか？'
 
       expect(page).to have_button 'アカウント確認メール再送'
