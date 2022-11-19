@@ -16,7 +16,7 @@ RSpec.describe 'ユーザー', type: :system do
         fill_in '名前', with: '新しい名前'
         fill_in 'ユーザー名', with: 'new'
         fill_in 'Eメール', with: 'new@example.com'
-        fill_in 'パスワード', with: 'new-password'
+        fill_in 'パスワード（空欄のままなら変更しません）', with: 'new-password'
         fill_in 'パスワード（確認用）', with: 'new-password'
         fill_in '現在のパスワード', with: 'old-password'
         click_button '更新'
