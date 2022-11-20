@@ -36,6 +36,11 @@ $utilities: map-merge(
   max-width: 40rem;
 }
 
+.devise-container {
+  @include make-container();
+  max-width: 30rem;
+}
+
 .turbo-progress-bar {
   background-color: $primary;
 }
