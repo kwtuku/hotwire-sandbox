@@ -49,3 +49,8 @@ $utilities: map-merge(
 .always-scrollbar {
   overflow-y: scroll;
 }
+
+label.required:after {
+  color: $danger;
+  content: ' 必須';
+}

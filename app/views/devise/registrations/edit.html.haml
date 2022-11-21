@@ -9,11 +9,12 @@
   = f.text_area :description, data: { controller: 'autosize' }
   = f.email_field :email, help: (t('.currently_waiting_confirmation_for_email',
     email: resource.unconfirmed_email) if resource.pending_reconfirmation?)
-  = f.password_field :password,
+  = f.password_field :password, required: false,
     label: "#{User.human_attribute_name(:password)}（#{t('.leave_blank_if_you_don_t_want_to_change_it')}）",
     help: t('devise.shared.minimum_password_length', count: @minimum_password_length)
   = f.password_field :password_confirmation
-  = f.password_field :current_password, help: t('.we_need_your_current_password_to_confirm_your_changes')
+  = f.password_field :current_password, label_class: 'required',
+    help: t('.we_need_your_current_password_to_confirm_your_changes')
   = f.primary
 .my-3
   %h2.mb-0= t('.cancel_my_account')
