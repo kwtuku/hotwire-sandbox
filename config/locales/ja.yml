@@ -224,10 +224,13 @@ ja:
     editing_resource: '%{resource_name}を編集'
     destroy: 削除
     destroyed: '%{resource_name}を削除しました'
+    do_not_miss_what_is_happening: 「いま」起きていることを見つけよう
     loading: 読み込み中...
     new_resource: '%{resource_name}を作成'
     ok: OK
+    sign_in: ログイン
     sign_out: ログアウト
+    sign_up: アカウント登録
     updated: '%{resource_name}を更新しました'
   posts:
     destroy_post: 投稿を削除する

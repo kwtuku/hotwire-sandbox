@@ -4,7 +4,12 @@ RSpec.describe 'ログイン', type: :system do
   describe '無効なログイン' do
     context '入力内容が無効なとき' do
       it 'フラッシュメッセージが表示される' do
-        visit new_user_session_path
+        visit root_path
+        click_link 'ログイン'
+
+        expect(page).to have_button 'ログイン'
+        expect(page).to have_current_path new_user_session_path
+
         click_button 'ログイン'
 
         expect(page).to have_content 'Eメールまたはパスワードが違います。'
@@ -16,7 +21,12 @@ RSpec.describe 'ログイン', type: :system do
       before { create(:user, email: 'unconfirmed@example.com', password: 'unconfirmed', confirmed_at: nil) }
 
       it 'フラッシュメッセージが表示される' do
-        visit new_user_session_path
+        visit root_path
+        click_link 'ログイン'
+
+        expect(page).to have_button 'ログイン'
+        expect(page).to have_current_path new_user_session_path
+
         fill_in 'Eメール', with: 'unconfirmed@example.com'
         fill_in 'パスワード', with: 'unconfirmed'
         click_button 'ログイン'
@@ -32,7 +42,7 @@ RSpec.describe 'ログイン', type: :system do
 
     it 'フラッシュメッセージが表示される' do
       sign_in user
-      visit posts_path
+      visit root_path
       find("[data-testid='user-dropdown']").click
       click_button 'ログアウト'
 

@@ -5,7 +5,12 @@ RSpec.describe 'パスワードの再設定', type: :system do
 
   context '入力内容が有効なとき' do
     it 'フラッシュメッセージが表示される、メールが送信される、メールのリンクからパスワードを再設定できる' do
-      visit new_user_session_path
+      visit root_path
+      click_link 'ログイン'
+
+      expect(page).to have_button 'ログイン'
+      expect(page).to have_current_path new_user_session_path
+
       click_link 'パスワードを忘れましたか？'
 
       expect(page).to have_button 'パスワードの再設定方法を送信する'
@@ -38,7 +43,12 @@ RSpec.describe 'パスワードの再設定', type: :system do
 
   context '入力内容が無効なとき' do
     it 'エラーメッセージが表示される' do
-      visit new_user_session_path
+      visit root_path
+      click_link 'ログイン'
+
+      expect(page).to have_button 'ログイン'
+      expect(page).to have_current_path new_user_session_path
+
       click_link 'パスワードを忘れましたか？'
 
       expect(page).to have_button 'パスワードの再設定方法を送信する'

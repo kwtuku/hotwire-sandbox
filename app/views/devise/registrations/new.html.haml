@@ -1,4 +1,4 @@
-%h2= t('.sign_up')
+%h1.text-center= t('.sign_up')
 = bootstrap_form_with(model: resource, url: registration_path(resource_name), data: { turbo: false }) do |f|
   = f.alert_message t('errors.messages.not_saved', count: resource.errors.count,
     resource: resource.class.model_name.human.downcase)
@@ -6,6 +6,6 @@
   = f.text_field :username
   = f.email_field :email
   = f.password_field :password, help: t('devise.shared.minimum_password_length', count: @minimum_password_length)
-  = f.password_field :password_confirmation
+  = f.password_field :password_confirmation, label_class: 'required'
   = f.primary t('.sign_up')
-= render 'devise/shared/links'
+.mt-3= render 'devise/shared/links'

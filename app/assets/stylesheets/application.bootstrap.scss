@@ -36,6 +36,21 @@ $utilities: map-merge(
   max-width: 40rem;
 }
 
+.devise-container {
+  @include make-container();
+  max-width: 30rem;
+}
+
 .turbo-progress-bar {
   background-color: $primary;
+}
+
+// Utility API で定義すると !important がついて、モーダルが開いているときもスクロールバーが表示されてしまう
+.always-scrollbar {
+  overflow-y: scroll;
+}
+
+label.required:after {
+  color: $danger;
+  content: ' 必須';
 }

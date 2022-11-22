@@ -1,15 +1,8 @@
 module Posts
   class AncestorsController < ApplicationController
-    before_action :set_post
-
     def index
-      @ancestors = @post.ancestors.preload(:user)
-    end
-
-    private
-
-    def set_post
-      @post = Post.find(params[:post_id])
+      post = Post.find(params[:post_id])
+      @ancestors = post.ancestors.preload(:user)
     end
   end
 end
